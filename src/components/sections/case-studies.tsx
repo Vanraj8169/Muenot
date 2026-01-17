@@ -1,0 +1,178 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { ArrowRight, TrendingUp, Users, Clock, Target } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const caseStudies = [
+  {
+    title: "AI-Powered Data Labeling at Scale",
+    client: "TechCorp",
+    industry: "Technology",
+    description:
+      "Delivered 5M+ annotated images with 99.5% accuracy for autonomous vehicle training, reducing model training time by 40%.",
+    metrics: [
+      { icon: Target, value: "99.5%", label: "Accuracy" },
+      { icon: TrendingUp, value: "40%", label: "Faster Training" },
+    ],
+    gradient: "from-violet-600 to-purple-600",
+    tag: "AI Data Services",
+  },
+  {
+    title: "Global E-Learning Platform Launch",
+    client: "GlobalEd",
+    industry: "Education",
+    description:
+      "Created 500+ hours of multilingual e-learning content across 15 languages, achieving 85% course completion rates.",
+    metrics: [
+      { icon: Users, value: "100K+", label: "Learners" },
+      { icon: TrendingUp, value: "85%", label: "Completion" },
+    ],
+    gradient: "from-blue-600 to-cyan-600",
+    tag: "E-Learning",
+  },
+  {
+    title: "Enterprise Digital Transformation",
+    client: "FinanceHub",
+    industry: "Finance",
+    description:
+      "Built a custom fintech platform processing $2B+ transactions annually with 99.99% uptime and full regulatory compliance.",
+    metrics: [
+      { icon: Clock, value: "99.99%", label: "Uptime" },
+      { icon: TrendingUp, value: "$2B+", label: "Processed" },
+    ],
+    gradient: "from-emerald-600 to-teal-600",
+    tag: "Technology",
+  },
+  {
+    title: "Multilingual Content Expansion",
+    client: "MediaGroup",
+    industry: "Media",
+    description:
+      "Localized streaming content into 25 languages, expanding global reach to 50+ countries and increasing viewership by 3x.",
+    metrics: [
+      { icon: Target, value: "25", label: "Languages" },
+      { icon: TrendingUp, value: "3x", label: "Viewership" },
+    ],
+    gradient: "from-pink-600 to-rose-600",
+    tag: "Localization",
+  },
+];
+
+export function CaseStudiesSection() {
+  return (
+    <section className="relative py-24 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/10 to-black" />
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 mb-6">
+            <TrendingUp className="w-4 h-4 text-purple-400" />
+            <span className="text-sm text-purple-300">Case Studies</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Success Stories That
+            <br />
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+              Drive Results
+            </span>
+          </h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Explore how we&apos;ve helped organizations achieve remarkable outcomes
+            through our comprehensive solutions.
+          </p>
+        </motion.div>
+
+        {/* Case Studies Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {caseStudies.map((study, index) => (
+            <motion.div
+              key={study.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="relative h-full p-8 rounded-2xl bg-secondary/30 border border-border hover:border-purple-500/30 transition-all duration-300 overflow-hidden">
+                {/* Gradient Accent */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${study.gradient}`}
+                />
+
+                {/* Tag */}
+                <span
+                  className={`inline-block px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r ${study.gradient} text-white mb-4`}
+                >
+                  {study.tag}
+                </span>
+
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">
+                  {study.title}
+                </h3>
+                <p className="text-sm text-purple-400 mb-3">
+                  {study.client} • {study.industry}
+                </p>
+                <p className="text-muted-foreground text-sm mb-6">
+                  {study.description}
+                </p>
+
+                {/* Metrics */}
+                <div className="flex gap-6 mb-6">
+                  {study.metrics.map((metric, i) => (
+                    <div key={i} className="flex items-center gap-2">
+                      <metric.icon className="w-4 h-4 text-purple-400" />
+                      <div>
+                        <div className="text-lg font-bold text-white">
+                          {metric.value}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {metric.label}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <Button
+                  variant="ghost"
+                  className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 p-0 group/btn"
+                >
+                  Read Full Case Study
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* View All CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-purple-500/30 hover:bg-purple-500/10"
+          >
+            View All Case Studies
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

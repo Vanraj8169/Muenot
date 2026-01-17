@@ -1,119 +1,107 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { HoverEffect } from "@/components/ui/card-hover-effect";
-import { BackgroundBeams } from "@/components/ui/background-beams";
+import { cn } from "@/lib/utils";
 import {
+  Cpu,
   Tag,
   Database,
-  Cpu,
   Users,
-  Settings,
-  Image,
-  FileText,
-  Video,
-  Box,
-  CheckCircle,
   Sparkles,
   BarChart3,
+  CheckSquare,
 } from "lucide-react";
 
-const dataAnnotationServices = [
+const aiCategories = [
   {
-    title: "Image Labeling",
-    description: "Precise image annotation for computer vision training",
-    icon: <Image className="w-5 h-5" />,
+    title: "Data Annotation",
+    description:
+      "Precise labeling for computer vision, NLP, and audio/video AI models",
+    icon: Tag,
+    gradient: "from-violet-500 to-purple-500",
+    services: [
+      "Image Labeling",
+      "Object Detection",
+      "Text Tagging",
+      "Entity Recognition",
+      "Audio Annotation",
+      "Video Tagging",
+    ],
   },
   {
-    title: "Object Detection",
-    description: "Bounding boxes and polygon annotations for object recognition",
-    icon: <Box className="w-5 h-5" />,
+    title: "Data Curation",
+    description:
+      "Clean, structure, and validate your data for optimal AI performance",
+    icon: Database,
+    gradient: "from-indigo-500 to-violet-500",
+    services: [
+      "Data Cleaning",
+      "Data Structuring",
+      "Data Validation",
+      "Bias Review",
+      "Metadata Enrichment",
+      "Quality Scoring",
+    ],
   },
   {
-    title: "Text Tagging",
-    description: "Named entity recognition and text classification",
-    icon: <FileText className="w-5 h-5" />,
+    title: "Model Training Support",
+    description:
+      "Comprehensive training data and human feedback for AI models",
+    icon: Cpu,
+    gradient: "from-purple-500 to-pink-500",
+    services: [
+      "Training Datasets",
+      "RLHF Support",
+      "Instruction Data",
+      "Synthetic Data",
+      "Prompt Data",
+      "Evaluation Sets",
+    ],
   },
   {
-    title: "Entity Recognition",
-    description: "Identify and classify named entities in unstructured text",
-    icon: <Tag className="w-5 h-5" />,
+    title: "Human-in-the-Loop",
+    description:
+      "Expert human oversight to enhance AI accuracy and reliability",
+    icon: Users,
+    gradient: "from-fuchsia-500 to-purple-500",
+    services: [
+      "Quality Assurance",
+      "Model Evaluation",
+      "Edge Case Review",
+      "Feedback Collection",
+      "Error Analysis",
+      "Continuous Improvement",
+    ],
   },
   {
-    title: "Audio Annotation",
-    description: "Speech recognition and audio event labeling",
-    icon: <Settings className="w-5 h-5" />,
+    title: "LLM Services",
+    description:
+      "Specialized services for large language model development",
+    icon: Sparkles,
+    gradient: "from-violet-500 to-indigo-500",
+    services: [
+      "Prompt Engineering",
+      "Fine-tuning Data",
+      "Response Rating",
+      "Safety Evaluation",
+      "Hallucination Detection",
+      "Benchmark Testing",
+    ],
   },
   {
-    title: "Video Tagging",
-    description: "Frame-by-frame video annotation for action recognition",
-    icon: <Video className="w-5 h-5" />,
-  },
-];
-
-const dataCurationServices = [
-  {
-    title: "Data Cleaning",
-    description: "Remove inconsistencies and errors from your datasets",
-    icon: <CheckCircle className="w-5 h-5" />,
-  },
-  {
-    title: "Data Structuring",
-    description: "Organize unstructured data into usable formats",
-    icon: <Database className="w-5 h-5" />,
-  },
-  {
-    title: "Data Validation",
-    description: "Ensure data accuracy and quality standards",
-    icon: <CheckCircle className="w-5 h-5" />,
-  },
-  {
-    title: "Bias Review",
-    description: "Identify and mitigate bias in training data",
-    icon: <Users className="w-5 h-5" />,
-  },
-  {
-    title: "Metadata Enrichment",
-    description: "Add contextual information to enhance data value",
-    icon: <Sparkles className="w-5 h-5" />,
-  },
-  {
-    title: "Quality Scoring",
-    description: "Rate and rank data quality for prioritization",
-    icon: <BarChart3 className="w-5 h-5" />,
-  },
-];
-
-const modelTrainingServices = [
-  {
-    title: "Training Datasets",
-    description: "Curated datasets optimized for model training",
-    icon: <Database className="w-5 h-5" />,
-  },
-  {
-    title: "RLHF Support",
-    description: "Reinforcement learning from human feedback",
-    icon: <Users className="w-5 h-5" />,
-  },
-  {
-    title: "Instruction Data",
-    description: "High-quality instruction-following datasets",
-    icon: <FileText className="w-5 h-5" />,
-  },
-  {
-    title: "Synthetic Data",
-    description: "AI-generated data to augment training sets",
-    icon: <Cpu className="w-5 h-5" />,
-  },
-  {
-    title: "Prompt Data",
-    description: "Diverse prompts for language model fine-tuning",
-    icon: <Sparkles className="w-5 h-5" />,
-  },
-  {
-    title: "Evaluation Sets",
-    description: "Benchmark datasets for model performance testing",
-    icon: <BarChart3 className="w-5 h-5" />,
+    title: "AI Analytics",
+    description:
+      "Data-driven insights to measure and improve AI performance",
+    icon: BarChart3,
+    gradient: "from-purple-500 to-violet-500",
+    services: [
+      "Performance Metrics",
+      "Quality Reports",
+      "Trend Analysis",
+      "ROI Tracking",
+      "Model Comparison",
+      "Drift Detection",
+    ],
   },
 ];
 
@@ -121,8 +109,8 @@ export function AIDataServices() {
   return (
     <section id="ai-data" className="relative py-24 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-black" />
-      <BackgroundBeams className="opacity-30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-violet-950/10 to-black" />
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -149,52 +137,65 @@ export function AIDataServices() {
           </p>
         </motion.div>
 
-        {/* Data Annotation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-semibold text-white mb-2 text-center">
-            Data Annotation
-          </h3>
-          <p className="text-muted-foreground text-center mb-8">
-            Precise labeling for computer vision, NLP, and audio/video AI models
-          </p>
-          <HoverEffect items={dataAnnotationServices} />
-        </motion.div>
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {aiCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="group"
+            >
+              <div className="relative h-full p-6 rounded-2xl bg-gradient-to-b from-secondary/50 to-secondary/20 border border-border hover:border-violet-500/30 transition-all duration-300">
+                {/* Glow Effect */}
+                <div
+                  className={cn(
+                    "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500",
+                    `bg-gradient-to-r ${category.gradient}`
+                  )}
+                  style={{
+                    transform: "scale(0.9)",
+                    filter: "blur(40px)",
+                    zIndex: -1,
+                  }}
+                />
 
-        {/* Data Curation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-2xl font-semibold text-white mb-2 text-center">
-            Data Curation
-          </h3>
-          <p className="text-muted-foreground text-center mb-8">
-            Clean, structure, and validate your data for optimal AI performance
-          </p>
-          <HoverEffect items={dataCurationServices} />
-        </motion.div>
+                {/* Icon */}
+                <div
+                  className={cn(
+                    "w-12 h-12 rounded-xl flex items-center justify-center mb-4",
+                    `bg-gradient-to-r ${category.gradient}`
+                  )}
+                >
+                  <category.icon className="w-6 h-6 text-white" />
+                </div>
 
-        {/* Model Training */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-2xl font-semibold text-white mb-2 text-center">
-            Model Training Support
-          </h3>
-          <p className="text-muted-foreground text-center mb-8">
-            Comprehensive training data and human feedback for AI models
-          </p>
-          <HoverEffect items={modelTrainingServices} />
-        </motion.div>
+                {/* Content */}
+                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-violet-300 transition-colors">
+                  {category.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  {category.description}
+                </p>
+
+                {/* Services List */}
+                <ul className="space-y-2">
+                  {category.services.map((service) => (
+                    <li
+                      key={service}
+                      className="flex items-center gap-2 text-sm text-muted-foreground"
+                    >
+                      <CheckSquare className="w-4 h-4 text-violet-400/60" />
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
