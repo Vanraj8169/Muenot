@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   Code2,
@@ -190,34 +189,38 @@ export function TechnologyServices() {
 
         {/* Tabs */}
         <Tabs defaultValue="software" className="w-full">
-          <TabsList className="flex flex-wrap justify-center gap-2 bg-transparent mb-8">
-            {Object.entries(techCategories).map(([key, category]) => (
-              <TabsTrigger
-                key={key}
-                value={key}
-                className="px-4 py-2 rounded-lg bg-secondary/50 data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300 border border-transparent data-[state=active]:border-emerald-500/30 transition-all"
-              >
-                <category.icon className="w-4 h-4 mr-2" />
-                {category.title}
-              </TabsTrigger>
-            ))}
-          </TabsList>
+          {/* Mobile: Horizontally scrollable tabs */}
+          <div className="overflow-x-auto pb-4 mb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible">
+            <TabsList className="inline-flex sm:flex sm:flex-wrap sm:justify-center gap-2 bg-transparent min-w-max sm:min-w-0">
+              {Object.entries(techCategories).map(([key, category]) => (
+                <TabsTrigger
+                  key={key}
+                  value={key}
+                  className="px-3 py-2 sm:px-4 rounded-lg bg-secondary/50 data-[state=active]:bg-emerald-500/20 data-[state=active]:text-emerald-300 border border-transparent data-[state=active]:border-emerald-500/30 transition-all whitespace-nowrap text-sm sm:text-base"
+                >
+                  <category.icon className="w-4 h-4 sm:mr-2" />
+                  <span className="hidden sm:inline">{category.title}</span>
+                  <span className="sm:hidden ml-1">{category.title.split(' ')[0]}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </div>
 
           {Object.entries(techCategories).map(([key, category]) => (
-            <TabsContent key={key} value={key}>
+            <TabsContent key={key} value={key} className="mt-0">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-semibold text-white mb-2">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-white mb-2">
                     {category.title}
                   </h3>
-                  <p className="text-muted-foreground">{category.description}</p>
+                  <p className="text-sm sm:text-base text-muted-foreground">{category.description}</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                   {category.services.map((service, index) => (
                     <motion.div
                       key={service.name}
@@ -226,11 +229,11 @@ export function TechnologyServices() {
                       transition={{ delay: index * 0.1 }}
                       className="group"
                     >
-                      <div className="h-full p-6 rounded-xl bg-gradient-to-b from-secondary/50 to-secondary/20 border border-border hover:border-emerald-500/30 transition-all duration-300">
-                        <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-4 group-hover:bg-emerald-500/30 transition-colors">
+                      <div className="h-full p-4 sm:p-6 rounded-xl bg-gradient-to-b from-secondary/50 to-secondary/20 border border-border hover:border-emerald-500/30 transition-all duration-300">
+                        <div className="w-10 h-10 rounded-lg bg-emerald-500/20 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-emerald-500/30 transition-colors">
                           <service.icon className="w-5 h-5 text-emerald-400" />
                         </div>
-                        <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                        <h4 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-300 transition-colors">
                           {service.name}
                         </h4>
                         <p className="text-sm text-muted-foreground">
