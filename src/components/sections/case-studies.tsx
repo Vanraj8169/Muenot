@@ -1,9 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
-import { ArrowRight, TrendingUp, Users, Clock, Target } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { TrendingUp, Users, Clock, Target } from "lucide-react";
 
 const caseStudies = [
   {
@@ -62,7 +60,7 @@ const caseStudies = [
 
 export function CaseStudiesSection() {
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="case-studies" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/10 to-black" />
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[length:50px_50px]" />
@@ -128,7 +126,7 @@ export function CaseStudiesSection() {
                 </p>
 
                 {/* Metrics */}
-                <div className="flex gap-6 mb-6">
+                <div className="flex gap-6">
                   {study.metrics.map((metric, i) => (
                     <div key={i} className="flex items-center gap-2">
                       <metric.icon className="w-4 h-4 text-purple-400" />
@@ -143,40 +141,11 @@ export function CaseStudiesSection() {
                     </div>
                   ))}
                 </div>
-
-                {/* CTA */}
-                <Link href="#footer">
-                  <Button
-                    variant="ghost"
-                    className="text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 p-0 group/btn"
-                  >
-                    Read Full Case Study
-                    <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* View All CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <Link href="#footer">
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-purple-500/30 hover:bg-purple-500/10"
-            >
-              View All Case Studies
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </Button>
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

@@ -126,12 +126,11 @@ export function LocalizationServices() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-3 gap-6 mb-16 max-w-3xl mx-auto"
         >
           {[
-            { value: "100+", label: "Languages" },
-            { value: "50+", label: "Countries" },
-            { value: "500+", label: "Native Linguists" },
+            { value: "30+", label: "Languages" },
+            { value: "10+", label: "Countries" },
             { value: "99.5%", label: "Accuracy Rate" },
           ].map((stat, index) => (
             <div

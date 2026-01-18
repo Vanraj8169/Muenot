@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,18 +11,25 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   {
     name: "Services",
-    href: "#services",
+    href: "/#services",
     children: [
-      { name: "AI Data Services", href: "#ai-data" },
-      { name: "E-Learning Services", href: "#elearning" },
-      { name: "Technology", href: "#technology" },
-      { name: "Localization", href: "#localization" },
-      { name: "Publishing", href: "#publishing" },
+      { name: "AI Data Services", href: "/#ai-data" },
+      { name: "E-Learning Services", href: "/#elearning" },
+      { name: "Technology", href: "/#technology" },
+      { name: "Localization", href: "/#localization" },
+      { name: "Publishing", href: "/#publishing" },
     ],
   },
-  { name: "About", href: "#about" },
-  { name: "Insights", href: "#insights" },
-  { name: "Contact", href: "#footer" },
+  { name: "About", href: "/#about" },
+  {
+    name: "Insights",
+    href: "/#insights",
+    children: [
+      { name: "Blogs", href: "/blog" },
+      { name: "Case Study", href: "/#case-studies" },
+    ],
+  },
+  { name: "Contact", href: "/#cta-section" },
 ];
 
 export function Navbar() {
@@ -37,13 +45,6 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -58,17 +59,19 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <button
-            onClick={scrollToTop}
-            className="flex items-center space-x-2 cursor-pointer"
+          <Link
+            href="/"
+            className="flex items-center cursor-pointer"
           >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-violet-600 to-indigo-600 flex items-center justify-center">
-              <span className="text-xl font-bold text-white">M</span>
-            </div>
-            <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-indigo-400">
-              Muenot
-            </span>
-          </button>
+            <Image
+              src="/logo.png"
+              alt="Muenot"
+              width={180}
+              height={50}
+              className="h-10 w-auto mix-blend-screen"
+              priority
+            />
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
@@ -129,14 +132,14 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link href="#footer">
+            <a href="https://calendar.app.google/aWpNoodRNFatz39u7" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="default"
                 className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700"
               >
-                Connect Now
+                Connect now
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -188,11 +191,11 @@ export function Navbar() {
                   </div>
                 ))}
                 <div className="pt-4">
-                  <Link href="#footer" onClick={() => setIsMobileMenuOpen(false)}>
+                  <a href="https://calendar.app.google/aWpNoodRNFatz39u7" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
                     <Button className="w-full bg-gradient-to-r from-violet-600 to-indigo-600">
-                      Connect Now
+                      Connect now
                     </Button>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

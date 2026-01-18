@@ -6,6 +6,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { ArrowRight, Play } from "lucide-react";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
@@ -75,13 +76,15 @@ export function HeroSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white px-8 py-6 text-lg rounded-xl group"
-          >
-            Explore Services
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          <Link href="/#services">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white px-8 py-6 text-lg rounded-xl group"
+            >
+              Explore Services
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
           <Button
             size="lg"
             variant="outline"
@@ -100,9 +103,9 @@ export function HeroSection() {
           className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8"
         >
           {[
-            { value: "500+", label: "Global Clients" },
-            { value: "50M+", label: "Data Points Processed" },
-            { value: "100+", label: "Languages Supported" },
+            { value: "50+", label: "Clients" },
+            { value: "10M+", label: "Data Points" },
+            { value: "30+", label: "Languages" },
             { value: "99.9%", label: "Accuracy Rate" },
           ].map((stat, index) => (
             <div key={index} className="text-center">

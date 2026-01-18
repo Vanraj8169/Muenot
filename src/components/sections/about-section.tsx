@@ -94,7 +94,7 @@ export function AboutSection() {
             className="text-center mb-16"
           >
             <span className="inline-block px-4 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm font-medium mb-4">
-              About Us
+              What Drives Us
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
               Empowering Businesses

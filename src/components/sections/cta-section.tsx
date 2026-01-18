@@ -8,7 +8,7 @@ import { ArrowRight, MessageCircle, Calendar } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="relative py-24 overflow-hidden">
+    <section id="cta-section" className="relative py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-violet-950/20 to-black" />
 
@@ -63,7 +63,7 @@ export function CTASection() {
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="mailto:contact@muenot.com">
+            <Link href="/contact">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-700 hover:to-indigo-700 text-white px-8 py-6 text-lg rounded-xl group"
@@ -73,7 +73,7 @@ export function CTASection() {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
-            <Link href="mailto:contact@muenot.com?subject=Schedule a Call">
+            <a href="https://calendar.app.google/aWpNoodRNFatz39u7" target="_blank" rel="noopener noreferrer">
               <Button
                 size="lg"
                 variant="outline"
@@ -82,7 +82,7 @@ export function CTASection() {
                 <Calendar className="mr-2 w-5 h-5" />
                 Schedule a Call
               </Button>
-            </Link>
+            </a>
           </div>
 
           {/* Trust Badges */}

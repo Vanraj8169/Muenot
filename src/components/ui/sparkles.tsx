@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId, useMemo } from "react";
+import React, { useId, useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -25,8 +25,15 @@ export const SparklesCore = (props: SparklesCoreProps) => {
     particleColor,
   } = props;
   const generatedId = useId();
+  const [mounted, setMounted] = useState(false);
+
+  // Only render particles on client to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const particles = useMemo(() => {
+    if (!mounted) return [];
     const particleCount = particleDensity || 50;
     return Array.from({ length: particleCount }, (_, i) => ({
       id: i,
@@ -36,7 +43,7 @@ export const SparklesCore = (props: SparklesCoreProps) => {
       duration: Math.random() * 3 + 2,
       delay: Math.random() * 2,
     }));
-  }, [particleDensity, minSize, maxSize]);
+  }, [mounted, particleDensity, minSize, maxSize]);
 
   return (
     <div
